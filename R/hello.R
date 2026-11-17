@@ -149,15 +149,15 @@ wtefunding <- function(x) {
 
 #' rename funding total column
 #'
-#' @param renamefunding rename funding total column
+#' @param renamefundingtotal rename funding total column
 #' @param x dataframe to which the function is applied
 #'
 #' @returns changes are saved to the dataframe
 #' @export
 #'
-#' @examples x <- renamefunding(x)
+#' @examples x <- renamefundingtotal(x)
 
-renamefunding <- function(x) {
+renamefundingtotal <- function(x) {
   x$WTE_funding <- x$WTE_funding$WTE_funding
   x
 }
