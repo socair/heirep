@@ -857,7 +857,7 @@ collapse3 <- function(x) {
 #'
 #' @examples x <- wtegrade(x)
 
-WTEgrade <- function(x) {
+wtegrade <- function(x) {
   x$WTE_grade <- x %>%
     group_by(Institution, Grade) %>%
     mutate(WTE_grade = sum(WTE))
