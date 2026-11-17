@@ -1009,3 +1009,54 @@ replaceanother <- function(x) {
   x[x=="* Another option"] <- "Other"
   x
 }
+
+
+#' subset academic staff with TUs only
+#'
+#' @param tusub subset academic staff with TUs only
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- tusub(x)
+
+tusub <- function(x) {
+  x <- subset(x, x[[1]] %in% c("Atlantic Technological University", "Munster Technological University", "South East Technological University", "Technological University Dublin", "Technological University of the Shannon"))
+  x
+}
+
+
+#' collapse academic staff by grade and gender
+#'
+#' @param collapseacgrade collapse academic staff by grade and gender
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- collapseacgrade(x)
+
+collapseacgrade <- function(x) {
+  x <- x %>%
+    group_by(Grade,gender) %>%
+    summarise(across(c(value), sum))
+  x
+}
+
+
+
+#' calculate percent of grade total wte for academic staff
+#'
+#' @param acpcgrade calculate percent of grade total wte for academic staff
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- acpcgrade(x)
+
+acpcgrade <- function(x) {
+    x <- group_by(x, Grade) %>% mutate(pctotal = value/sum(value))
+    x
+}
