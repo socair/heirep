@@ -695,7 +695,7 @@ percentcohort <- function(x) {
 
 roundcohortvalues <- function(x) {
   x$academicvalueround <- base::round(x$pc_academic*100, digits=0)
-  x$pmssvalueround <- base::round(x$pc_PMSS*100, digits=0)
+  x$pmssvalueround <- base::round(x$pc_pmss*100, digits=0)
   x
 }
 
