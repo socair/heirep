@@ -993,3 +993,19 @@ gradepclabel <- function(x) {
   x$gradepclabel[x$pctotal<0.05]=NA
   x
 }
+
+
+#' replace value "* Another option"
+#'
+#' @param replaceanother replace value "* Another option"
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- replaceanother(x)
+
+replaceanother <- function(x) {
+  x[x=="* Another option"] <- "Other"
+  x
+}
