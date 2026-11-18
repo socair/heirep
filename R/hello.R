@@ -1060,3 +1060,216 @@ acpcgrade <- function(x) {
     x <- group_by(x, Grade) %>% mutate(pctotal = value/sum(value))
     x
 }
+
+
+#' add column for "All TUs"
+#'
+#' @param alltus add column for "All TUs"
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- alltus(x)
+
+alltus <- function(x) {
+  x$type <- "All TUs"
+  x
+}
+
+
+#' add column for "All HEIs"
+#'
+#' @param allhei add column for "All HEIs"
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- allhei(x)
+
+allhei <- function(x) {
+  x$type <- "All HEIs"
+  x
+}
+
+
+
+#' subset data for TUS only
+#'
+#' @param tussub subset data for TUS only
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- tussub(x)
+
+tussub <- function(x) {
+  x <- subset(x, x[[1]] %in% ("Technological University of the Shannon"))
+  x
+}
+
+
+#' subset hei data for gender
+#'
+#' @param heigendersub subset hei data for gender
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- heigendersub(x)
+
+heigendersub <- function(x) {
+  x <- subset(x, x[1,4:6])
+  x
+}
+
+
+#' collapse hei by gender
+#'
+#' @param collapsehei collapse hei by gender
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- collapsehei(x)
+
+collapsehei <- function(x) {
+  x <- x %>%
+    group_by(Gender) %>%
+    summarise(across(c(Headcount, WTE), sum))
+  x
+}
+
+
+#' calculate percent of total for hei headcount
+#'
+#' @param percenthchei calculate percent of total for hei headcount
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- percenthchei(x)
+
+percenthchei <- function(x) {
+    x$pcHC <- (x$Headcount/sum(x$Headcount))
+    x
+  }
+
+
+#' round percent values for headcount
+#'
+#' @param roundhcvalues round percent values for headcount
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- roundhcvalues(x)
+
+roundhcvalues <- function(x) {
+  x$hcround <- base::round(x$pcHC*100, digits=0)
+  x
+}
+
+
+#' create percentage label for headcount
+#'
+#' @param percenthclabel create percentage label for headcount
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- percenthclabel(x)
+
+percenthclabel <- function(x) {
+  x$pchclabel <- gsub(" ", "", paste((x$hcround), "%"))
+  x
+}
+
+
+#' remove values for labels <5% for headcount
+#'
+#' @param pchclabel remove values for labels <5% for headcount
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- pchclabel(x)
+
+pchclabel <- function(x) {
+  x$pchclabel[x$pcHC<0.05]=NA
+  x
+}
+
+
+#' calculate percent of total for hei wte
+#'
+#' @param percentwtehei calculate percent of total for hei wte
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- percentwtehei(x)
+
+percentwtehei <- function(x) {
+  x$pcWTE <- (x$WTE/sum(x$WTE))
+  x
+}
+
+
+#' round percent values for wte
+#'
+#' @param roundwtevalues round percent values for wte
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- roundwtevalues(x)
+
+roundwtevalues <- function(x) {
+  x$wteround <- base::round(x$pcWTE*100, digits=0)
+  x
+}
+
+
+#' create percentage label for wte
+#'
+#' @param percentwtelabel create percentage label for wte
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- percentwtelabel(x)
+
+percentwtelabel <- function(x) {
+  x$pcwtelabel <- gsub(" ", "", paste((x$wteround), "%"))
+  x
+}
+
+
+#' remove values for labels <5% for wte
+#'
+#' @param pcwtelabel remove values for labels <5% for wte
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- pcwtelabel(x)
+
+pcwtelabel <- function(x) {
+  x$pcwtelabel[x$pcWTE<0.05]=NA
+  x
+}
+
+
