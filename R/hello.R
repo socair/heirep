@@ -1318,7 +1318,7 @@ collapsepmsspay <- function(x) {
 #' @examples x <- pmsspcgrade(x)
 
 pmsspcgrade <- function(x) {
-  x <- group_by(x, `Pay grade`) %>% mutate(pctotal = value/sum(value))
+  x <- group_by(x, `Pay grade`) %>% mutate(pctotal = WTE/sum(WTE))
   x
 }
 
