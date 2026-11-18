@@ -1006,7 +1006,7 @@ gradepclabel <- function(x) {
 #' @examples x <- replaceanother(x)
 
 replaceanother <- function(x) {
-  x[x=="* Another option"] <- "Other"
+  x[x=="* Another option" | x=="*Another option"] <- "Other"
   x
 }
 
