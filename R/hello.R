@@ -41,7 +41,7 @@ dropcol <- function(x) {
 #' @examples x <- renamegender(x)
 
 renamegender <- function(x) {
-  x[x=="* Another option"] <- "Other"
+  x[x=="* Another option" | x=="*Another option"] <- "Other"
   x
 }
 
