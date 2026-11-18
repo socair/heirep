@@ -1094,6 +1094,22 @@ allhei <- function(x) {
 }
 
 
+#' add column for "TUS"
+#'
+#' @param tusonly add column for "TUS"
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- tusonly(x)
+
+tusonly <- function(x) {
+  x$type <- "TUS"
+  x
+}
+
+
 
 #' subset data for TUS only
 #'
