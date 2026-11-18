@@ -1289,3 +1289,19 @@ pcwtelabel <- function(x) {
 }
 
 
+#' collapse all tus data for pmss pay grade
+#'
+#' @param collapsepmsspay collapse all tus data for pmss pay grade
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- collapsepmsspay(x)
+
+collapsepmsspay <- function(x) {
+  x <- x %>%
+    group_by(`Pay grade`, Gender) %>%
+    summarise(across(c(WTE), sum))
+  x
+}
