@@ -1122,7 +1122,7 @@ tussub <- function(x) {
 #' @examples x <- heigendersub(x)
 
 heigendersub <- function(x) {
-  x <- subset(x, x[1,4:6])
+  x <- subset(x[,c(1,4:6)])
   x
 }
 
