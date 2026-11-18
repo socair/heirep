@@ -1305,3 +1305,21 @@ collapsepmsspay <- function(x) {
     summarise(across(c(WTE), sum))
   x
 }
+
+
+#' calculate percent of grade total wte for pmss staff
+#'
+#' @param pmsspcgrade calculate percent of grade total wte for pmss staff
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- pmsspcgrade(x)
+
+pmsspcgrade <- function(x) {
+  x <- group_by(x, `Pay grade`) %>% mutate(pctotal = value/sum(value))
+  x
+}
+
+
