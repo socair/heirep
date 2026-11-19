@@ -1323,3 +1323,35 @@ pmsspcgrade <- function(x) {
 }
 
 
+#' rename "Contract duration" column
+#'
+#' @param renameconcol rename "Contract duration" column
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- renameconcol(x)
+
+renameconcol <- function(x) {
+  x$contract <- x$`Contract duration`
+  x$`Contract duration` <- NULL
+  x
+}
+
+
+#' rename "Contract-type" column
+#'
+#' @param renamestatuscol rename "Contract-type" column
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- renamestatuscol(x)
+
+renameconcol <- function(x) {
+  x$status <- x$`Contract-type`
+  x$`Contract-type` <- NULL
+  x
+}
