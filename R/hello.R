@@ -1350,7 +1350,7 @@ renameconcol <- function(x) {
 #'
 #' @examples x <- renamestatuscol(x)
 
-renameconcol <- function(x) {
+renamestatuscol <- function(x) {
   x$status <- x$`Contract-type`
   x$`Contract-type` <- NULL
   x
