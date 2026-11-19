@@ -1404,3 +1404,21 @@ pmssconsub <- function(x) {
   x <- subset(x, x[[4]] %in% ("PMSS"))
   x
 }
+
+
+#' collapse tus only contract data by gender
+#'
+#' @param collapsetuscon collapse tus only contract data by gender
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- collapsetuscon(x)
+
+collapsetuscon <- function(x) {
+  x <- x %>%
+    group_by(contract, status) %>%
+    summarise(across(c(WTE), sum))
+  x
+}
