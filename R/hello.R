@@ -1355,3 +1355,52 @@ renamestatuscol <- function(x) {
   x$`Contract-type` <- NULL
   x
 }
+
+
+#' subset hei data for contract
+#'
+#' @param consub subset hei data for contract
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- consub(x)
+
+consub <- function(x) {
+  x <- subset(x[,c(1,4,6:9)])
+  x
+}
+
+
+
+#' subset hei data for academic contract only
+#'
+#' @param acconsub subset hei data for academic contract only
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- acconsub(x)
+
+acconsub <- function(x) {
+  x <- subset(x, x[[4]] %in% ("Academic"))
+  x
+}
+
+
+#' subset hei data for pmss contract only
+#'
+#' @param pmssconsub subset hei data for pmss contract only
+#' @param x dataframe to which the function is applied
+#'
+#' @returns changes are saved to the dataframe
+#' @export
+#'
+#' @examples x <- pmssconsub(x)
+
+pmssconsub <- function(x) {
+  x <- subset(x, x[[4]] %in% ("PMSS"))
+  x
+}
