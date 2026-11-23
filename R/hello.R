@@ -1418,7 +1418,7 @@ pmssconsub <- function(x) {
 
 collapsetuscon <- function(x) {
   x <- x %>%
-    group_by(contract, status, Gender) %>%
+    group_by(contract, status) %>%
     summarise(across(c(WTE), sum))
   x
 }
